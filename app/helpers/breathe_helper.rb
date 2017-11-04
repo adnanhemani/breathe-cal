@@ -1,5 +1,7 @@
 module BreatheHelper
   
+  POLLEN = ['Grass', 'Mold', 'Ragweed', 'Tree', 'UVIndex']
+  
   POLLEN_RANGE_HASH = { 'tree' => 
               {'good' => "Good: 0",
                 'low' => "Low: 1 - 14",
@@ -214,6 +216,10 @@ Think about replacing your grass lawn with low pollen ground cover - Irish Moss,
       end
       return rtn
     end    
+  end
+  
+  def get_pollen_list
+    POLLEN
   end
   
   private

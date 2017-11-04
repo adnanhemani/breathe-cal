@@ -16,8 +16,10 @@
 </div>
 
 <div id="filter-allergens-box">
-  <%= check_box_tag(:grass) %>
-  <%= label_tag(:grass, "Grass") %> 
+  <% get_pollen_list.each do |pollen| %>
+    <%= check_box_tag(pollen.to_sym, 's', true) %>
+    <%= label_tag(pollen.to_sym, pollen) %> 
+  <% end %>
 </div>
 
 <div style="text-align: right; padding: 0 20px;">
