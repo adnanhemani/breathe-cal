@@ -72,3 +72,4 @@ Scenario: Once an allergen has been created, I should be able to delete it
   When I press on the allergen
   And I press delete
   Then I should not see the allergen on the map
+
