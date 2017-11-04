@@ -14,10 +14,18 @@
 <div id="weather-box">
   <%= render 'breathe/weather_box'%>
 </div>
+
+<div id="filter-allergens-box">
+  <%= check_box_tag(:grass) %>
+  <%= label_tag(:grass, "Grass") %> 
+</div>
+
 <div style="text-align: right; padding: 0 20px;">
   <p style="margin-bottom: 0; font-family: 'Open Sans', sans-serif; font-weight: 400; font-size: 14px; color: #989898;">Good to Unhealthy</p>
   <%= image_tag('scale.png') %>  
 </div>
+
+
 
 <div style="padding: 10px;" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <h5 style="padding-left: 10px; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px; color: #575757;">Allergens</h5>
