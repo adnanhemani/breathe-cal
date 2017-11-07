@@ -1,30 +1,14 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 # Given /database is loaded with dummy cities/ do |cities_table|
 #   cities_table.hashes.each do |city|
 #     Movie.create movie
 #   end
 # end
->>>>>>> first round of step definitions
 
-Given (/^I click click here to add an allergen$/) do
-  find("#marker-cta").click
-end
-  
 When /^my location is set to "(.*)"$/ do |place| 
   find('#pac-input').set(place)
   find('#pac-input').native.send_keys(:Enter)
 end
 
-Given (/^I touch the add marker CTA$/) do
-  find("#marker-cta").click
-end
-
-
-When (/^I click on the map$/) do
-  page.find("#map").click
-end
 
 And /^I visit multiple locations:(.*)$/ do |cities|
   city_list = cities.split(',')
@@ -34,131 +18,24 @@ And /^I visit multiple locations:(.*)$/ do |cities|
 end
 
 Then /I should see the details of "(.*)"/ do |city_name|
-  #pending
+  pending
 end
 
 Then /I expect to see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
   expect(page.body.index(e1) < page.body.index(e2))
-<<<<<<< HEAD
+end
 
-=======
-=======
->>>>>>> first round of step definitions
-Given (/^I click click here to add an allergen$/) do
+Given(/^I touch the add marker CTA$/) do
   find("#marker-cta").click
 end
 
-Given (/^I touch the add marker CTA$/) do
-  find("#marker-cta").click
+Given(/^I click on the map$/) do
+  page.find("#map").click # Write code here that turns the phrase above into concrete actions
 end
 
-When (/^I click on the map$/) do
-  page.find("#map").click
-<<<<<<< HEAD
-end
-
-When (/^I click on the green area of the sidebar$/) do
-  find("#fox-box").click
-end
-
-Then (/^I should view the create allergen box$/) do
-  # if page.respond_to? :should
-  #   find(:css, "#wrap").should be_visible
-  # else
-  #   expect(page).to have_selector('#wrap', visible: true)  
-  # end
-  #pending
-end
-
-Then (/^I should not view the create allergen box$/) do
-  # if page.respond_to? :should
-  #   page.should have_no_xpath('//*', :id => 'wrap')
-  # else
-  #   assert page.has_no_xpath?('//*', :id => 'wrap')
-  # end
-  #pending
-end
-
-When(/^I fill in title with cat$/) do
-  #pending
-end
-
-When(/^I press on the allergen$/) do
-  #pending
-end
-
-When(/^I press delete$/) do
-  #pending
-end
-
-When(/^I check cat$/) do
-  #pending
-end
-
-When(/^I press submit$/) do
-  #pending
-end
-
-Given(/^I have added a dog allergen$/) do
-  #pending
-end
-
-When(/^I click on the allergen$/) do
-  #pending
-end
-=======
->>>>>>> first round of step definitions
-end
-
-Given (/^I click on the map$/) do
-  page.find("#map").click
-end
-
-When (/^I click on the green area of the sidebar$/) do
-  find("#fox-box").click
-end
-
-<<<<<<< HEAD
 Then(/^I should see "([^"]*)", when it loads$/) do |arg1|
-=======
-Then (/^I should view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'markerForm')
-  else
-    assert page.has_xpath?('//*', :id => 'markerForm')
-  end
-end
-
-Given (/^I view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'markerForm')
-  else
-    assert page.has_xpath?('//*', :id => 'markerForm')
-  end
-end
-
-Then (/^I should not view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_no_xpath('//*', :id => 'markerForm')
-  else
-    assert page.has_no_xpath?('//*', :id => 'markerForm')
-  end
-end
-
-When (/^I fill in the title$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'markerForm')
-  else
-    assert page.has_xpath?('//*', :id => 'markerForm')
-  end
-end
-
->>>>>>> first round of step definitions
-
-Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
->>>>>>> first round of step definitions
   wait_for_ajax
   wait_until { page.has_content?(arg1)}
   if page.respond_to? :should
@@ -168,12 +45,7 @@ Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
   end
 end
 
-<<<<<<< HEAD
-=======
 
-
-
->>>>>>> first round of step definitions
 def wait_until
   require "timeout"
   Timeout.timeout(Capybara.default_max_wait_time) do
@@ -357,11 +229,11 @@ end
 
 
 When(/^I should see a "date"$/) do
-  #pending
+  
 end
 
 Given(/^I have searched for "([^"]*)"$/) do |arg1|
-  #pending # Write code here that turns the phrase above into concrete actions
+  pending # Write code here that turns the phrase above into concrete actions
 end
 
 When(/^I should see a "(.+)"$/) do |image|
