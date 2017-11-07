@@ -27,8 +27,7 @@ Scenario: Once the create allergen box is up, I should be able to add an allerge
   And I check cat
   And I press submit
   Then I should see the allergen on the map
-  #check the labelNum before adding marker, then check for a marker with a labelNum of 1 more
-  
+
 #PIVOTAL ID 152021104
 #Add and edit an allergen on the map, see edits
 Scenario: Once I've loaded the app and added an allergen, I should be able to edit the allergen.
