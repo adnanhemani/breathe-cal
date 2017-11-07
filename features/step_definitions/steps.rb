@@ -9,7 +9,6 @@ When /^my location is set to "(.*)"$/ do |place|
   find('#pac-input').native.send_keys(:Enter)
 end
 
-
 And /^I visit multiple locations:(.*)$/ do |cities|
   city_list = cities.split(',')
   city_list.each do |city|
@@ -35,7 +34,24 @@ Given(/^I click on the map$/) do
   page.find("#map").click # Write code here that turns the phrase above into concrete actions
 end
 
-Then(/^I should see "([^"]*)", when it loads$/) do |arg1|
+Then (/^I should view the create allergen box$/) do
+  # if page.respond_to? :should
+  #   find(:css, "#wrap").should be_visible
+  # else
+  #   expect(page).to have_selector('#wrap', visible: true)  
+  # end
+  pending
+end
+
+Then (/^I should not view the create allergen box$/) do
+  if page.respond_to? :should
+    page.should have_no_xpath('//*', :id => 'wrap')
+  else
+    assert page.has_no_xpath?('//*', :id => 'wrap')
+  end
+end
+
+Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
   wait_for_ajax
   wait_until { page.has_content?(arg1)}
   if page.respond_to? :should
@@ -44,7 +60,6 @@ Then(/^I should see "([^"]*)", when it loads$/) do |arg1|
     assert page.has_content?(arg1)
   end
 end
-
 
 def wait_until
   require "timeout"
@@ -63,7 +78,6 @@ end
 def finished_all_ajax_requests?
     page.evaluate_script('jQuery.active').zero?
 end
-
 
 Then /I should see "(.*)" above "(.*)"$/ do |city1, city2|
   #  ensure that that city1 occurs before city2.
