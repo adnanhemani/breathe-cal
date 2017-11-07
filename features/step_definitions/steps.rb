@@ -15,28 +15,45 @@ When (/^I click on the green area of the sidebar$/) do
 end
 
 Then (/^I should view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'wrap')
-  else
-    assert page.has_xpath?('//*', :id => 'wrap')
-  end
-end
-
-Given (/^I view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'markerForm')
-  else
-    assert page.has_xpath?('//*', :id => 'markerForm')
-  end
+  # if page.respond_to? :should
+  #   find(:css, "#wrap").should be_visible
+  # else
+  #   expect(page).to have_selector('#wrap', visible: true)  
+  # end
+  pending
 end
 
 Then (/^I should not view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_no_xpath('//*', :id => 'wrap')
-  else
-    assert page.has_no_xpath?('//*', :id => 'wrap')
-  end
+  # if page.respond_to? :should
+  #   page.should have_no_xpath('//*', :id => 'wrap')
+  # else
+  #   assert page.has_no_xpath?('//*', :id => 'wrap')
+  # end
+  pending
 end
+
+When(/^I fill in title with cat$/) do
+  pending
+end
+
+When(/^I check cat$/) do
+  pending
+end
+
+When(/^I press submit$/) do
+  pending
+end
+
+Given(/^I have added a dog allergen$/) do
+  pending
+end
+
+When(/^I click on the allergen$/) do
+  pending
+end
+
+
+
 
 Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
   wait_for_ajax
@@ -47,9 +64,6 @@ Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
     assert page.has_content?(arg1)
   end
 end
-
-
-
 
 def wait_until
   require "timeout"

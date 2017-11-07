@@ -4,7 +4,7 @@ Feature:
   
 Background:
   Given I am on the landing page
-  Given I click click here to add an allergen
+  And I click click here to add an allergen
   
 #PIVOTAL ID 152021104
 #Click on the map and see the box to create an allergen
@@ -22,24 +22,41 @@ Scenario: Once I've loaded the app, I should not be able to click outside the ma
 #Be able to fully add an allergen
 Scenario: Once the create allergen box is up, I should be able to add an allergen
   Given I click on the map
-  Given I view the create allergen box
+  And I should view the create allergen box
   When I fill in title with cat
-  When I check cat
-  When I press submit
-  #Then I should see the allergen on the map
+  And I check cat
+  And I press submit
+  Then I should see the allergen on the map
   #check the labelNum before adding marker, then check for a marker with a labelNum of 1 more
   
 #PIVOTAL ID 152021104
-#Add and edit an allergen on the map, see the edits
+#Add and edit an allergen on the map, see edits
 Scenario: Once I've loaded the app and added an allergen, I should be able to edit the allergen.
-  #Given I have added a dog allergen
-  #When I click on the allergen
-
+  Given I have added a dog allergen
+  And I click on the allergen
+  And I click the edit allergen button
+  And I should be able to see the allergen details
+  When I fill in title with cat
+  And I check cat
+  And I press submit
+  Then I should see the updated allergen on the map
+  
 #PIVOTAL ID 152021104
 #Login and add an allergen, logout, switch users and have it still be there
 Scenario: Once I login and add an allergen, that allergen should still be there if I log out/switch users
-  #Given
-
+  Given I log in
+  And I have added a dog allergen
+  And I log out
+  Then I should see the allergen on the map
+  When I log in
+  Then I should see the allergen on the map
 
 #PIVOTAL ID 152021104
-#
+#SAD PATH: Begin to make marker, fill in fields, exit. Should not see marker
+Scenario: Once I begin to add an allergen and exit before submitting, I should not see the allergen on the map
+  Given I click on the map
+  And I should view the create allergen box
+  And I fill in title with cat
+  And I check cat
+  When I exit the create allergen box
+  Then I should not see the allergen on the map
