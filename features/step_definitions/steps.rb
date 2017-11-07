@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Given /database is loaded with dummy cities/ do |cities_table|
 #   cities_table.hashes.each do |city|
 #     Movie.create movie
@@ -25,17 +26,66 @@ Then /I expect to see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
   expect(page.body.index(e1) < page.body.index(e2))
-end
-
-Given(/^I touch the add marker CTA$/) do
+=======
+Given (/^I click click here to add an allergen$/) do
   find("#marker-cta").click
 end
 
-Given(/^I click on the map$/) do
-  page.find("#map").click # Write code here that turns the phrase above into concrete actions
+Given (/^I touch the add marker CTA$/) do
+  find("#marker-cta").click
 end
 
+When (/^I click on the map$/) do
+  page.find("#map").click
+>>>>>>> first round of step definitions
+end
+
+Given (/^I click on the map$/) do
+  page.find("#map").click
+end
+
+When (/^I click on the green area of the sidebar$/) do
+  find("#fox-box").click
+end
+
+<<<<<<< HEAD
 Then(/^I should see "([^"]*)", when it loads$/) do |arg1|
+=======
+Then (/^I should view the create allergen box$/) do
+  if page.respond_to? :should
+    page.should have_xpath('//*', :id => 'markerForm')
+  else
+    assert page.has_xpath?('//*', :id => 'markerForm')
+  end
+end
+
+Given (/^I view the create allergen box$/) do
+  if page.respond_to? :should
+    page.should have_xpath('//*', :id => 'markerForm')
+  else
+    assert page.has_xpath?('//*', :id => 'markerForm')
+  end
+end
+
+Then (/^I should not view the create allergen box$/) do
+  if page.respond_to? :should
+    page.should have_no_xpath('//*', :id => 'markerForm')
+  else
+    assert page.has_no_xpath?('//*', :id => 'markerForm')
+  end
+end
+
+When (/^I fill in the title$/) do
+  if page.respond_to? :should
+    page.should have_xpath('//*', :id => 'markerForm')
+  else
+    assert page.has_xpath?('//*', :id => 'markerForm')
+  end
+end
+
+
+Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
+>>>>>>> first round of step definitions
   wait_for_ajax
   wait_until { page.has_content?(arg1)}
   if page.respond_to? :should
@@ -44,6 +94,8 @@ Then(/^I should see "([^"]*)", when it loads$/) do |arg1|
     assert page.has_content?(arg1)
   end
 end
+
+
 
 
 def wait_until
