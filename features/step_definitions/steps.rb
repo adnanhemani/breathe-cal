@@ -48,20 +48,14 @@ end
 Then(/^I should see "([^"]*)", when it loads$/) do |arg1|
 =======
 Then (/^I should view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'wrap')
-  else
-    assert page.has_xpath?('//*', :id => 'wrap')
-  end
+  # if page.respond_to? :should
+  #   find(:css, "#wrap").should be_visible
+  # else
+  #   expect(page).to have_selector('#wrap', visible: true)  
+  # end
+  pending
 end
 
-Given (/^I view the create allergen box$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'markerForm')
-  else
-    assert page.has_xpath?('//*', :id => 'markerForm')
-  end
-end
 
 Then (/^I should not view the create allergen box$/) do
   if page.respond_to? :should
