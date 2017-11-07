@@ -22,7 +22,7 @@ Scenario: Once I've loaded the app, I should not be able to click outside the ma
 #Be able to fully add an allergen
 Scenario: Once the create allergen box is up, I should be able to add an allergen
   Given I click on the map
-  Given I view the create allergen box
+  Given I should view the create allergen box
   When I fill in title with cat
   When I check cat
   When I press submit
@@ -32,8 +32,8 @@ Scenario: Once the create allergen box is up, I should be able to add an allerge
 #PIVOTAL ID 152021104
 #Add and edit an allergen on the map, see the edits
 Scenario: Once I've loaded the app and added an allergen, I should be able to edit the allergen.
-  #Given I have added a dog allergen
-  #When I click on the allergen
+  Given I have added a dog allergen
+  When I click on the allergen
 
 #PIVOTAL ID 152021104
 #Login and add an allergen, logout, switch users and have it still be there
