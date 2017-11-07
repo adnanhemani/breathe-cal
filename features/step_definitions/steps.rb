@@ -40,10 +40,6 @@ When (/^I click on the map$/) do
 >>>>>>> first round of step definitions
 end
 
-Given (/^I click on the map$/) do
-  page.find("#map").click
-end
-
 When (/^I click on the green area of the sidebar$/) do
   find("#fox-box").click
 end
@@ -53,9 +49,9 @@ Then(/^I should see "([^"]*)", when it loads$/) do |arg1|
 =======
 Then (/^I should view the create allergen box$/) do
   if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'markerForm')
+    page.should have_xpath('//*', :id => 'wrap')
   else
-    assert page.has_xpath?('//*', :id => 'markerForm')
+    assert page.has_xpath?('//*', :id => 'wrap')
   end
 end
 
@@ -69,20 +65,11 @@ end
 
 Then (/^I should not view the create allergen box$/) do
   if page.respond_to? :should
-    page.should have_no_xpath('//*', :id => 'markerForm')
+    page.should have_no_xpath('//*', :id => 'wrap')
   else
-    assert page.has_no_xpath?('//*', :id => 'markerForm')
+    assert page.has_no_xpath?('//*', :id => 'wrap')
   end
 end
-
-When (/^I fill in the title$/) do
-  if page.respond_to? :should
-    page.should have_xpath('//*', :id => 'markerForm')
-  else
-    assert page.has_xpath?('//*', :id => 'markerForm')
-  end
-end
-
 
 Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
 >>>>>>> first round of step definitions
