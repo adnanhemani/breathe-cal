@@ -1,13 +1,20 @@
 
-# Given /database is loaded with dummy cities/ do |cities_table|
-#   cities_table.hashes.each do |city|
-#     Movie.create movie
-#   end
-# end
-
+Given (/^I click click here to add an allergen$/) do
+  find("#marker-cta").click
+end
+  
 When /^my location is set to "(.*)"$/ do |place| 
   find('#pac-input').set(place)
   find('#pac-input').native.send_keys(:Enter)
+end
+
+Given (/^I touch the add marker CTA$/) do
+  find("#marker-cta").click
+end
+
+
+When (/^I click on the map$/) do
+  page.find("#map").click
 end
 
 And /^I visit multiple locations:(.*)$/ do |cities|
@@ -36,7 +43,6 @@ end
 
 When (/^I click on the map$/) do
   page.find("#map").click
->>>>>>> first round of step definitions
 end
 
 When (/^I click on the green area of the sidebar$/) do
@@ -88,9 +94,6 @@ end
 When(/^I click on the allergen$/) do
   pending
 end
-
-
-
 
 Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
 >>>>>>> first round of step definitions
@@ -286,7 +289,7 @@ end
 
 
 When(/^I should see a "date"$/) do
-  
+  pending
 end
 
 Given(/^I have searched for "([^"]*)"$/) do |arg1|
