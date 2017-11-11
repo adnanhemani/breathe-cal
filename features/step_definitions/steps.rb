@@ -1,4 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+Given (/^I click click here to add an allergen$/) do
+  find("#marker-cta").click
+end
+  
+>>>>>>> Fixed errors with missing end keywords
 # Given /database is loaded with dummy cities/ do |cities_table|
 #   cities_table.hashes.each do |city|
 #     Movie.create movie
@@ -10,6 +18,17 @@ When /^my location is set to "(.*)"$/ do |place|
   find('#pac-input').native.send_keys(:Enter)
 end
 
+<<<<<<< HEAD
+=======
+Given (/^I touch the add marker CTA$/) do
+  find("#marker-cta").click
+end
+
+
+When (/^I click on the map$/) do
+  page.find("#map").click
+end
+>>>>>>> Fixed errors with missing end keywords
 
 And /^I visit multiple locations:(.*)$/ do |cities|
   city_list = cities.split(',')
@@ -92,9 +111,6 @@ end
 When(/^I click on the allergen$/) do
   pending
 end
-
-
-
 
 Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
 >>>>>>> first round of step definitions
@@ -290,7 +306,7 @@ end
 
 
 When(/^I should see a "date"$/) do
-  
+  pending
 end
 
 Given(/^I have searched for "([^"]*)"$/) do |arg1|
