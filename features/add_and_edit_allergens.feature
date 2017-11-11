@@ -69,6 +69,6 @@ Scenario: Once an allergen has been created, I should be able to delete it
   And I fill in title with cat
   And I check cat
   And I press submit
-  When I click on the allergen
+  When I press on the allergen
   And I press delete
   Then I should not see the allergen on the map
