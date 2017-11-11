@@ -60,3 +60,15 @@ Scenario: Once I begin to add an allergen and exit before submitting, I should n
   And I check cat
   When I exit the create allergen box
   Then I should not see the allergen on the map
+  
+#PIVOTAL ID 152774026
+#Select an allergen and be able to delete it
+Scenario: Once an allergen has been created, I should be able to delete it
+  Given I click on the map
+  And I should view the create allergen box
+  And I fill in title with cat
+  And I check cat
+  And I press submit
+  When I click on the allergen
+  And I press delete
+  Then I should not see the allergen on the map
