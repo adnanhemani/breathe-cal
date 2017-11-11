@@ -74,8 +74,4 @@ Then /^(?:|I )should see "([^"]*)" or "([^"]*)"$/ do |text1, text2|
     assert page.has_content?(text1) || page.has_content?(text2)
   end
 end
-<<<<<<< HEAD:Old Features and Step defs/client_step.rb
 end
-=======
-end
->>>>>>> b1c1327167dc7cf3d3bc3b38ebdeab3fcc330d4e:features/step_definitions/client_step.rb
