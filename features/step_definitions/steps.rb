@@ -1,6 +1,7 @@
 
 Given (/^I click click here to add an allergen$/) do
   find("#marker-cta").click
+end
   
 # Given /database is loaded with dummy cities/ do |cities_table|
 #   cities_table.hashes.each do |city|
@@ -20,6 +21,7 @@ end
 
 When (/^I click on the map$/) do
   page.find("#map").click
+end
 
 And /^I visit multiple locations:(.*)$/ do |cities|
   city_list = cities.split(',')
@@ -88,9 +90,6 @@ end
 When(/^I click on the allergen$/) do
   pending
 end
-
-
-
 
 Then(/^I should see "([^"]*)" when it loads$/) do |arg1|
   wait_for_ajax
@@ -285,7 +284,7 @@ end
 
 
 When(/^I should see a "date"$/) do
-  
+  pending
 end
 
 Given(/^I have searched for "([^"]*)"$/) do |arg1|
