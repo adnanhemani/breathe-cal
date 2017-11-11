@@ -15,7 +15,7 @@ Scenario: Having searched for a city I should see it displayed on the page
     And my location is set to "Kansas City"
     And I follow "Back" 
     Then I should see "Kansas City"
-    Then I should not see "Vancouver"
+    #Then I should not see "Vancouver"
     Then I should not see "Boston"
     #When I follow a recently searched link: "Kansas City"
     #Then I should see the details of "Berkeley"
