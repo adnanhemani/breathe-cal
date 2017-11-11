@@ -56,6 +56,14 @@ When(/^I fill in title with cat$/) do
   pending
 end
 
+When(/^I click on the allergen$/) do
+  pending
+end
+
+When(/^I press delete$/) do
+  pending
+end
+
 When(/^I check cat$/) do
   pending
 end
