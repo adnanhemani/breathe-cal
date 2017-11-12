@@ -47,6 +47,10 @@ Given(/^I click on the map$/) do
   page.find("#map").click # Write code here that turns the phrase above into concrete actions
 end
 
+When (/^I click on the green area of the sidebar$/) do
+  find("#fox-box").click
+end
+
 Then (/^I should view the create allergen box$/) do
   # if page.respond_to? :should
   #   find(:css, "#wrap").should be_visible
