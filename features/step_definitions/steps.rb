@@ -69,6 +69,38 @@ Then (/^I should not view the create allergen box$/) do
   #pending
 end
 
+Then (/^I should not see the allergen on the map$/) do
+  #pending
+end
+
+When (/^I exit the create allergen box$/) do
+  #pending
+end
+
+Then (/^I should see the allergen on the map$/) do
+  #pending
+end
+
+When (/^I log in$/) do
+  #pending
+end
+
+When (/^I log out$/) do
+  #pending
+end
+
+Given (/^I click the edit allergen button$/) do
+  #pending
+end
+
+Given (/^I should be able to see the allergen details$/) do
+  #pending
+end
+
+Then (/^I should see the updated allergen on the map$/) do
+  #pending
+end
+
 When(/^I fill in title with cat$/) do
   #pending
 end
