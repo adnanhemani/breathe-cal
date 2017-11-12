@@ -157,7 +157,6 @@ end
 #   end
 # end
 
-
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 
