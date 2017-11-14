@@ -17,7 +17,6 @@ Given (/^I touch the add marker CTA$/) do
   find("#marker-cta").click
 end
 
-
 When (/^I click on the map$/) do
   page.find("#map").click
 end
@@ -30,7 +29,7 @@ And /^I visit multiple locations:(.*)$/ do |cities|
 end
 
 Then /I should see the details of "(.*)"/ do |city_name|
-  #pending
+  pending
 end
 
 Then /I expect to see "(.*)" before "(.*)"/ do |e1, e2|
@@ -50,7 +49,7 @@ Then (/^I should view the create allergen box$/) do
   # else
   #   expect(page).to have_selector('#wrap', visible: true)  
   # end
-  #pending
+  pending
 end
 
 Then (/^I should not view the create allergen box$/) do
@@ -59,67 +58,67 @@ Then (/^I should not view the create allergen box$/) do
   # else
   #   assert page.has_no_xpath?('//*', :id => 'wrap')
   # end
-  #pending
+  pending
 end
 
 Then (/^I should not see the allergen on the map$/) do
-  #pending
+  pending
 end
 
 When (/^I exit the create allergen box$/) do
-  #pending
+  pending
 end
 
 Then (/^I should see the allergen on the map$/) do
-  #pending
+  pending
 end
 
 When (/^I log in$/) do
-  #pending
+  pending
 end
 
 When (/^I log out$/) do
-  #pending
+  pending
 end
 
 Given (/^I click the edit allergen button$/) do
-  #pending
+  pending
 end
 
 Given (/^I should be able to see the allergen details$/) do
-  #pending
+  pending
 end
 
 Then (/^I should see the updated allergen on the map$/) do
-  #pending
+  pending
 end
 
 When(/^I fill in title with cat$/) do
-  #pending
+  pending
 end
 
 When(/^I press on the allergen$/) do
-  #pending
+  pending
 end
 
 When(/^I press delete$/) do
-  #pending
+  pending
 end
 
 When(/^I check cat$/) do
-  #pending
+  pending
 end
 
 When(/^I press submit$/) do
-  #pending
+  pending
 end
 
-Given(/^I have added a dog allergen$/) do
-  #pending
+Given(/^I add a dog allergen$/) do
+  pending
 end
 
 When(/^I click on the allergen$/) do
-  #pending
+  pending
 end
 
 Then(/^I should see "([^"]*)" when it loads$/) do |arg1|

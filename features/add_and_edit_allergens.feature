@@ -32,7 +32,7 @@ Scenario: Once the create allergen box is up, I should be able to add an allerge
 #PIVOTAL ID 152021104
 #Add and edit an allergen on the map, see edits
 Scenario: Once I've loaded the app and added an allergen, I should be able to edit the allergen.
-  Given I have added a dog allergen
+  Given I add a dog allergen
   And I click on the allergen
   And I click the edit allergen button
   And I should be able to see the allergen details
