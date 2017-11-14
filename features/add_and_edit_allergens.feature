@@ -44,11 +44,10 @@ Scenario: Once I've loaded the app and added an allergen, I should be able to ed
 #Login and add an allergen, logout, login and have it still be there
 @omniauth_google_login
 Scenario: Once I login and add an allergen, that allergen should still be there if I log out/switch users
-  Given I successfully authenticated with Google as "James Jones"
-  And I add a dog allergen
-  And I follow "Sign Out"
+  Given I add a dog allergen
+  And I successfully authenticated with Google as "James Jones"
   Then I should see the allergen on the map
-  Given I successfully authenticated with Google as "James Jones"
+  Given I follow "Sign Out"
   Then I should see the allergen on the map
 
 #PIVOTAL ID 152021104
