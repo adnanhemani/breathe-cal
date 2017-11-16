@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'breathe#index'
-  
+  resources :cities, :users
+  resources :sessions, only: [:create, :destroy]
+
   #city data routes
   post '/city_data' => 'cities#city_data'
   get '/cached_city_data' => 'cities#cached_city_data'
@@ -20,16 +22,13 @@ Rails.application.routes.draw do
   get 'auth/failure' => "sessions#auth_failure", as: 'auth_failure'
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :sessions, only: [:create, :destroy]
-  
+  # INVALID ROUTE, NO CHECKLOGGED FUNCTION
   get 'authcheck' => "sessions#checklogged"
 
+  #markers routes
   post '/markers' => 'markers#create'
   get '/markers' => 'markers#show'
-  
-  resources :cities, :users
-  
-  
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
