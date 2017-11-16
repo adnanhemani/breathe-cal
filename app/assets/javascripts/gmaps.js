@@ -66,14 +66,14 @@ function initAutocomplete() {
     zoom: 13,
     mapTypeId: 'roadmap'
   });
-  
   var geocoder = new google.maps.Geocoder();
   
   google.maps.event.addDomListener(window, "resize", function() {
-   var center = map.getCenter();
-   google.maps.event.trigger(map, "resize");
-   map.setCenter(center); 
-  });
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center); 
+    }
+  );
   
   $('#marker-cta').css('cursor','pointer');
   
@@ -90,18 +90,13 @@ function initAutocomplete() {
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(markerEnabler);
 
   // Bias the SearchBox results towards current map's viewport
-  map.addListener('bounds_changed', function() {
-    searchBox.setBounds(map.getBounds());
-  });
+  map.addListener('bounds_changed', function() {searchBox.setBounds(map.getBounds()); });
 
-  google.maps.event.addListener(map, 'dragend', function(){
-    fetchMarkers();
-  })
+  google.maps.event.addListener(map, 'dragend', function(){ fetchMarkers(); })
 
   var markers = [];
 
-  searchBox.addListener('places_changed', 
-    function() {
+  searchBox.addListener('places_changed', function() {
       var places = searchBox.getPlaces();
       if (places.length === 0) {
         return;
@@ -109,8 +104,7 @@ function initAutocomplete() {
     markers.forEach(
       function(marker) {
         marker.setMap(null);
-      }
-    );
+    });
     markers = [];
 
     var bounds = new google.maps.LatLngBounds();
