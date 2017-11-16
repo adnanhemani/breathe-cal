@@ -9,6 +9,5 @@ class Marker < ActiveRecord::Base
 
     markers = markersBottom & markersTop & markersLeft & markersRight
     return markers
-    # markers = Marker.where("lng < (?) AND lat < (?) AND lng > (?) AND lat > (?) ", right, top, left, bottom)
   end
 end

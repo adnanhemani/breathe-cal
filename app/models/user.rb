@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
     has_many :cities
+    has_many :markers
     validates :provider, :uid, :name, :email, :oauth_token, presence: true
     validates :oauth_expires_at, presence: true, if: :not_expired?
 
@@ -27,8 +28,8 @@ class User < ActiveRecord::Base
     end
     
     # Grabs needed information from the auth hash for user creation/update
-    def self.auth_data(auth)
-        {provider: auth[:provider], 
+    def self.auth_data(auth) {
+        provider: auth[:provider], 
         uid: auth[:uid],
         name: auth[:info][:name],
         email: auth[:info][:email],
