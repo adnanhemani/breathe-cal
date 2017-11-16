@@ -101,24 +101,19 @@ function initAutocomplete() {
     fetchMarkers();
   })
 
-
-
   var markers = [];
 
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
 
-
     if (places.length === 0) {
       return;
     }
-
-
+    
     markers.forEach(function(marker) {
       marker.setMap(null);
     });
     markers = [];
-
 
     var bounds = new google.maps.LatLngBounds();
     // place = google's best reccommended city
@@ -170,7 +165,7 @@ function initAutocomplete() {
       $.ajax({
       type: "GET",
       contentType: "application/json; charset=utf-8",
-      url: "authcheck",
+      url: "authchck",
       data: {},
       success: function(data){
         if (data.authorized && recentMarker === null){
@@ -185,7 +180,7 @@ function initAutocomplete() {
     });
   }
  
-  // allow user to put down a marker
+  // User clicks and puts a marker down
   $("#marker-cta").click(function(){
     loggedIn();
     $("#marker-cta span").text("Click map to place marker")
