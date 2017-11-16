@@ -2,7 +2,6 @@
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
 
-
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -59,7 +58,6 @@ function initAutocomplete() {
     })
   }
   
-  
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {
       lat: 37.8716,
@@ -91,8 +89,7 @@ function initAutocomplete() {
   var markerEnabler = document.getElementById('marker-cta');
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(markerEnabler);
 
-
-  // Bias the SearchBox results towards current map's viewport.
+  // Bias the SearchBox results towards current map's viewport
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
@@ -103,16 +100,17 @@ function initAutocomplete() {
 
   var markers = [];
 
-  searchBox.addListener('places_changed', function() {
-    var places = searchBox.getPlaces();
-
-    if (places.length === 0) {
-      return;
+  searchBox.addListener('places_changed', 
+    function() {
+      var places = searchBox.getPlaces();
+      if (places.length === 0) {
+        return;
     }
-    
-    markers.forEach(function(marker) {
-      marker.setMap(null);
-    });
+    markers.forEach(
+      function(marker) {
+        marker.setMap(null);
+      }
+    );
     markers = [];
 
     var bounds = new google.maps.LatLngBounds();
@@ -161,32 +159,34 @@ function initAutocomplete() {
   
   var canMark = false;
   
-  function loggedIn(){
-      $.ajax({
-      type: "GET",
-      contentType: "application/json; charset=utf-8",
-      url: "authchck",
-      data: {},
-      success: function(data){
-        if (data.authorized && recentMarker === null){
-          map.setOptions({ draggableCursor :"url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto"});
-          $("#marker-cta").css("cursor", "url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto");
-          canMark = true;  
-        } else {
-          canMark = false;
-          window.location.href = '/auth/google_oauth2';
-        }
-      }
-    });
+  // Called when user begins to make a marker, makes create user request
+  function click_marker_cta(){
+      $.ajax({  type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "authcheck",
+                data: {},
+                success: function(data){
+                  if (data.authorized && recentMarker === null){
+                    map.setOptions({ draggableCursor :"url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto"});
+                    $("#marker-cta").css("cursor", "url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto");
+                    canMark = true;  
+                  } else {
+                    canMark = false;
+                    window.location.href = '/auth/google_oauth2';
+                  }
+                }
+      });
   }
  
-  // User clicks and puts a marker down
-  $("#marker-cta").click(function(){
-    loggedIn();
-    $("#marker-cta span").text("Click map to place marker")
-  });
+  // If clicks to put a marker down
+  $("#marker-cta").click(
+    function(){
+      click_marker_cta();
+      $("#marker-cta span").text("Click map to place marker")
+    }
+  );
 
-
+  // Waits for user to click on the map and place their allergen
   google.maps.event.addListener(map, 'click', function(event) {
     if (canMark){
       var x = event.pixel.x + 16;
