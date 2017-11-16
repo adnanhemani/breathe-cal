@@ -157,6 +157,9 @@ function initAutocomplete() {
   function click_marker_cta(){
       $.ajax({  type: "GET",
                 contentType: "application/json; charset=utf-8",
+                
+                //CHANGE THIS URL TO SOMETHING VALID IN SESSIONS CONTROLLER
+                
                 url: "authcheck",
                 data: {},
                 success: function(data){

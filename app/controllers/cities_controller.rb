@@ -43,14 +43,13 @@ class CitiesController < ApplicationController
         loc_key = City.get_loc_key(latlng["lat"], latlng["lng"], params[:name])
         city = City.find_by(location_key: loc_key)
       end
+      
       city.update_city_data
-
       @data = [city.name, city.daily_data]
       unless a_in_b_as_c?(city.name, session[:cities], "name")
         if (@quality.nil?)
           @quality = city.daily_data["DailyForecasts"][0]["AirAndPollen"][0]["Category"]
         end
-
         session[:cities] << { "name" => city.name, "quality" => @quality }
       end
     
