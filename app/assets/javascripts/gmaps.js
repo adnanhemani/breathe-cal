@@ -20,6 +20,7 @@ function initAutocomplete() {
     return map.getProjection().fromPointToLatLng(worldPoint);
   }
   
+  // Responsible for populating the markers on the map with the 'GET markers' request, which invokes markers#show
   function fetchMarkers(){
     deleteMarkers();
     labelNum = 0;
@@ -286,8 +287,6 @@ function initAutocomplete() {
     });
     
     // disallow marker spawn if its already here. this means i need the UniqueID 
-    
-    
     $(document).on('submit', '#markerForm', function(e){
       e.preventDefault();
       infowindow.close();
@@ -320,7 +319,6 @@ function initAutocomplete() {
           markers.push(recentMarker);
         }
       })
-      
       return false;
     });
   }
@@ -340,7 +338,6 @@ function initAutocomplete() {
     clearMarkers();
     markers = [];
   }
-
 }
 
 

@@ -8,7 +8,6 @@ class MarkersController < ApplicationController
     else 
       render :nothing => true
     end
-    #i assume i get some JSON from the post 
   end
   
   def show
@@ -34,5 +33,4 @@ class MarkersController < ApplicationController
   def bound_params
     params.require(:bounds).permit(:uplat,:downlat,:rightlong,:leftlong)
   end
-  
 end
