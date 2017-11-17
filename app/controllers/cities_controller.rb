@@ -150,7 +150,7 @@ class CitiesController < ApplicationController
         end
     end
     
-    
+    # creates a city
     def create
       # if params[:city]
       #   City.get_location_key(params[:city]["zip"],params[:city]["name"],params[:city]["state"],params[:city]["country"])

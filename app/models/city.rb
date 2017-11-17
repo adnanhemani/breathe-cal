@@ -23,7 +23,6 @@ class City < ActiveRecord::Base
     return false
   end
       
-      
   def update_city_data
     location_key = self.location_key
     if self.updated_at <= Date.today.to_time.beginning_of_day or !has_valid_data()
