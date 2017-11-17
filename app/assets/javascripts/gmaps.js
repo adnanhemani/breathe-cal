@@ -155,29 +155,19 @@ function initAutocomplete() {
   
   // Called when user begins to make a marker, makes create user request
   function click_marker_cta(){
-      $.ajax({  type: "GET",
-                contentType: "application/json; charset=utf-8",
-                
-                //CHANGE THIS URL TO SOMETHING VALID IN SESSIONS CONTROLLER
-                
-                url: "authcheck",
-                data: {},
-                success: function(data){
-                  if (data.authorized && recentMarker === null){
-                    map.setOptions({ draggableCursor :"url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto"});
-                    $("#marker-cta").css("cursor", "url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto");
-                    canMark = true;  
-                  } else {
-                    canMark = false;
-                    window.location.href = '/auth/google_oauth2';
-                  }
-                }
-      });
+    // We can add a marker
+    if (recentMarker === null){
+      map.setOptions({ draggableCursor :"url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto"});
+      $("#marker-cta").css("cursor", "url(https://maps.google.com/mapfiles/ms/micons/red-dot.png), auto");
+      canMark = true;  
+    // We can't add a marker
+    } else {
+      canMark = false;
+    }
   }
  
   // If clicks to put a marker down
-  $("#marker-cta").click(
-    function(){
+  $("#marker-cta").click( function(){ 
       click_marker_cta();
       $("#marker-cta span").text("Click map to place marker")
     }
@@ -202,6 +192,7 @@ function initAutocomplete() {
   
   var recentMarker = null;
   
+  // Create string to display (not sure when this gets called or if it does)
   function createContentString(data){
     var title = data.title;
     var attributes = ["cat", "bees", "perfume", "oak", "peanut", "gluten", "dog", "dust", "smoke", "mold"];
@@ -230,6 +221,7 @@ function initAutocomplete() {
     return content;
   }
   
+  // Called when a user clicks to place a marker
   function placeMarker(location) {
     labelNum += 1;
     var marker = new google.maps.Marker({
@@ -239,6 +231,7 @@ function initAutocomplete() {
       draggable: true,
     })
     
+    // Create form string to display to user
     var contentString = $(
       "<div id='wrap'>" + 
       "<form id='markerForm' action='markers' method='POST'>"+
@@ -262,6 +255,7 @@ function initAutocomplete() {
       "</div>"
     );
     
+    // Display the content above to the user in an infowindow
     var infowindow = new google.maps.InfoWindow();
     infowindow.open(map,marker);
     infowindow.setContent(contentString[0]);

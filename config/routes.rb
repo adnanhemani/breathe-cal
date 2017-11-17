@@ -8,24 +8,25 @@ Rails.application.routes.draw do
   resources :cities, :users
   resources :sessions, only: [:create, :destroy]
 
-  #city data routes
+  # city data routes
   post '/city_data' => 'cities#city_data'
   get '/cached_city_data' => 'cities#cached_city_data'
   get '/city_data_back' => 'cities#city_data_back'
 
-  #favorite cities routes
+  # favorite cities routes
   get '/favorite_city' => 'cities#favorite_city'
   get '/display_favorite_cities' => 'cities#display_favorite_cities'
   
-  #auth routes
+  # auth routes
   get 'auth/:provider/callback', to: "sessions#create", as: 'auth'
   get 'auth/failure' => "sessions#auth_failure", as: 'auth_failure'
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
+  # add marker click-to-activate route
   # INVALID ROUTE, NO CHECKLOGGED FUNCTION
-  get 'authcheck' => "sessions#checklogged"
+  get 'sessions/' => "sessions#checklogged"
 
-  #markers routes
+  # markers routes
   post '/markers' => 'markers#create'
   get '/markers' => 'markers#show'
 

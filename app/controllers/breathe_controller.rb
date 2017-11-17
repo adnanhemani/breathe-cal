@@ -22,6 +22,8 @@ class BreatheController < ApplicationController
     # marker.lng user.longitude
     # end
     # @cityname = "Berkeley"
+    
+    #Updates 5 most recent searched cities
     if session[:cities]
       if session[:cities].length > 5
         session[:cities] = session[:cities][session[:cities].length - 5, session[:cities].length - 1]
