@@ -166,7 +166,7 @@ function initAutocomplete() {
     }
   }
  
-  // If clicks to put a marker down
+  // If user clicks to put a marker down
   $("#marker-cta").click( function(){ 
       click_marker_cta();
       $("#marker-cta span").text("Click map to place marker")
@@ -182,7 +182,7 @@ function initAutocomplete() {
       point.x = x;
       point.y = y;
       var latlng = point2LatLng(point, map);
-      placeMarker(latlng);  
+      placeMarker(latlng);
       canMark = false;
       map.setOptions({ draggableCursor :"auto"});
       $("#marker-cta").css("cursor", "pointer");
@@ -231,7 +231,7 @@ function initAutocomplete() {
       draggable: true,
     })
     
-    // Create form string to display to user
+    // Create form to display to user so they can add an allergen
     var contentString = $(
       "<div id='wrap'>" + 
       "<form id='markerForm' action='markers' method='POST'>"+
@@ -255,7 +255,7 @@ function initAutocomplete() {
       "</div>"
     );
     
-    // Display the content above to the user in an infowindow
+    // Display the form above to the user in an infowindow
     var infowindow = new google.maps.InfoWindow();
     infowindow.open(map,marker);
     infowindow.setContent(contentString[0]);
@@ -266,6 +266,7 @@ function initAutocomplete() {
     
     recentMarker = marker;
     
+    // Close the window and remove the created marker if the user exits
     var listenerHandle = google.maps.event.addListener(infowindow, 'closeclick', function(){
       labelNum -=1;
       recentMarker.setMap(null);
@@ -273,29 +274,29 @@ function initAutocomplete() {
     });
     
     // disallow marker spawn if its already here. this means i need the UniqueID 
+    // Close the create allergen menu on form submission, POST marker object
     $(document).on('submit', '#markerForm', function(e){
       e.preventDefault();
       infowindow.close();
       var postData = $(this).serializeArray();
       postData.push({name: "lat", value: location.lat()});
       postData.push({name: "lng", value: location.lng()});
+      // Populate an array we pass into the POST request
       var convData = {};
-      $(postData).each(function(idnex,obj){
+      $(postData).each(function(index, obj){
         convData[obj.name] = obj.value;
       })
       
       $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "markers",
+        url: "marker#create",
         data: JSON.stringify({marker: convData}),
         success: function(d){
           fetchedMarkers[d.id] = true;
           var newContent = createContentString(d);
-          // var newContent = $("<div>"+
-          //                     "cat " + d.cat + 
-          //                     "<br> dog " + d.dog +
-          //                     "<br> mold " + d.mold + "</div>");
+          
+          
           console.log(d.id);
           recentMarker.infowindow.setContent(newContent[0]);
           recentMarker.infowindow.open(map,recentMarker);
