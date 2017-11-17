@@ -1,26 +1,25 @@
 class MarkersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  # Create a new marker
   def create
-    if session[:user_id] != nil 
+    # If the user has been assigned to a user object
+    if session[:user_id] != nil
       marker = Marker.create!(marker_params.merge(:user_id => session[:user_id]))
       render :json => marker
-    else 
+    # If the user has not been assigned to a user object
+    else
       render :nothing => true
     end
   end
   
+  # Show all markers inside the bounds of the map
   def show
     up = bound_params[:uplat]
     down = bound_params[:downlat]
     left = bound_params[:leftlong]
     right = bound_params[:rightlong]
     markers = Marker.find_all_within_bounds(up,down,left,right)
-    # markers.each do |marker|
-    #   if marker.user_id == session[:user_id]
-    #     output << marker
-    #   end
-    # end
     render :json => markers
   end
   
