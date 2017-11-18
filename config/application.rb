@@ -42,6 +42,5 @@ module BreatheCal
         ENV[k.upcase] ||= v
       end
     end
-    
   end
 end

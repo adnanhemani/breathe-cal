@@ -192,9 +192,10 @@ function initAutocomplete() {
   
   var recentMarker = null;
   
-  // Create string to display (not sure when this gets called or if it does)
+  // Create string to display in infowindow
   function createContentString(data){
     var title = data.title;
+    console.log(title)
     var attributes = ["cat", "bees", "perfume", "oak", "peanut", "gluten", "dog", "dust", "smoke", "mold"];
     var leftContentString = "";
     var rightContentString = "";
@@ -290,14 +291,12 @@ function initAutocomplete() {
       $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "marker#create",
+        url: "/markers",
+
         data: JSON.stringify({marker: convData}),
         success: function(d){
           fetchedMarkers[d.id] = true;
           var newContent = createContentString(d);
-          
-          
-          console.log(d.id);
           recentMarker.infowindow.setContent(newContent[0]);
           recentMarker.infowindow.open(map,recentMarker);
           recentMarker.draggable = false;
@@ -310,17 +309,19 @@ function initAutocomplete() {
     });
   }
   
-  // maybe just send a list of attributes to tell javascript to use....? 
+  //  
   function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
     }
   }
   
+  // Clears all markers
   function clearMarkers() {
     setMapOnAll(null);
   }
 
+  // Delete all markeres
   function deleteMarkers() {
     clearMarkers();
     markers = [];

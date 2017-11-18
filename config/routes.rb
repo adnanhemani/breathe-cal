@@ -22,8 +22,6 @@ Rails.application.routes.draw do
   get 'auth/failure' => "sessions#auth_failure", as: 'auth_failure'
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
-  get '/markers' => 'markers#show'
-
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
