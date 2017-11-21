@@ -2,12 +2,6 @@ Given (/^I click click here to add an allergen$/) do
   find("#marker-cta").click
 end
 
-# Given /database is loaded with dummy cities/ do |cities_table|
-#   cities_table.hashes.each do |city|
-#     Movie.create movie
-#   end
-# end
-
 When /^my location is set to "(.*)"$/ do |place| 
   find('#pac-input').set(place)
   find('#pac-input').native.send_keys(:Enter)
@@ -68,37 +62,6 @@ end
 When (/^I exit the create allergen box$/) do
   pending
 end
-
-When (/^I click on the green area of the sidebar$/) do
-  find("#fox-box").click
-end
-
-Then (/^I should view the create allergen box$/) do
-  # if page.respond_to? :should
-  #   find(:css, "#wrap").should be_visible
-  # else
-  #   expect(page).to have_selector('#wrap', visible: true)  
-  # end
-  pending
-end
-
-Then (/^I should not view the create allergen box$/) do
-  # if page.respond_to? :should
-  #   page.should have_no_xpath('//*', :id => 'wrap')
-  # else
-  #   assert page.has_no_xpath?('//*', :id => 'wrap')
-  # end
-  pending
-end
-
-Then (/^I should not see the allergen on the map$/) do
-  pending
-end
-
-When (/^I exit the create allergen box$/) do
-  pending
-end
-
 
 Then (/^I should see the allergen on the map$/) do
   pending

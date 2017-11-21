@@ -2,12 +2,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  
   before_filter :prepare_for_mobile
-
+  before_filter :require_login
+  
   helper_method :current_user
   helper_method :current_or_guest_user
 
-  # Returns the current user.
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end
@@ -52,8 +53,6 @@ class ApplicationController < ActionController::Base
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device? && !request.xhr?
   end
-<<<<<<< HEAD
-<<<<<<< HEAD
   
   # We need check if the user is logged or is a guest before they access the site
   # For users to use this site they need to be associated with a User Record
@@ -82,9 +81,4 @@ class ApplicationController < ActionController::Base
     session[:guest_user_id] = u.id
     u
   end
-  
-=======
->>>>>>> refactoring and commenting marker files and gmaps.js
-=======
->>>>>>> d3bd863c3298a6bd38f676f5f0c42201b04fad31
 end
