@@ -29,6 +29,6 @@ class MarkersController < ApplicationController
   end
   
   def bound_params
-    params.require(:bounds).permit(:uplat,:downlat,:rightlong,:leftlong)
+    params.require(:bounds, :uplat, :downlat, :rightlong, :leftlong)
   end
 end
