@@ -25,7 +25,7 @@ class MarkersController < ApplicationController
   private 
   
   def marker_params
-    params.require(:marker, :user_id, :lat, :lng).permit(:cat, :dog, :mold, :bees, :perfume, :oak, :peanut, :gluten, :dust, :smoke, :title)
+    params.require(:marker, :lat, :lng).permit(:cat, :dog, :mold, :bees, :perfume, :oak, :peanut, :gluten, :dust, :smoke, :title, :user_id)
   end
   
   def bound_params
