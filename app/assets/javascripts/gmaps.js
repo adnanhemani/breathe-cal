@@ -29,7 +29,7 @@ function initAutocomplete() {
     $.ajax({
       type: "GET",
       contentType: "application/json; charset=utf-8",
-      url: "markers",
+      url: "/markers",
       data: {bounds :{uplat:NECorner.lat(),downlat:SWCorner.lat(),rightlong:NECorner.lng(),leftlong:SWCorner.lng()}},
       success: function(data){
         for(var i=0;i<data.length; i++){

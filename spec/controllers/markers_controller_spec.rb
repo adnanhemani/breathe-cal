@@ -4,7 +4,7 @@ RSpec.describe MarkersController, type: :controller do
 
   describe "create" do
     
-    context "with valid attrtributes" do
+    context "with valid attributes" do
       it "renders marker object as json" do
         post :create, {marker: {cat: true, lat: 10, lng: 10}, user_id: 1}
         expect(response.content_type).to eq("application/json")

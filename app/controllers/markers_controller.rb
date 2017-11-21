@@ -3,14 +3,8 @@ class MarkersController < ApplicationController
 
   # Create a new marker
   def create
-    # If the user has been assigned to a user object
-    if session[:current_or_guest_user] != nil
-      marker = Marker.create!(marker_params.merge(:user_id => session[:user_id]))
+      marker = Marker.create!(marker_params)
       render :json => marker
-    # If the user has not been assigned to a user object
-    else
-      render :nothing => true
-    end
   end
   
   # Show all markers inside the bounds of the map
@@ -31,7 +25,7 @@ class MarkersController < ApplicationController
   private 
   
   def marker_params
-    params.require(:marker).permit(:lat, :lng, :cat, :dog, :mold, :bees, :perfume, :oak, :peanut, :gluten, :dust, :smoke, :title)
+    params.require(:marker, :user_id).permit(:lat, :lng, :cat, :dog, :mold, :bees, :perfume, :oak, :peanut, :gluten, :dust, :smoke, :title)
   end
   
   def bound_params
