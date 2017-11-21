@@ -53,6 +53,7 @@ class ApplicationController < ActionController::Base
     request.format = :mobile if mobile_device? && !request.xhr?
   end
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   # We need check if the user is logged or is a guest before they access the site
   # For users to use this site they need to be associated with a User Record
@@ -84,4 +85,6 @@ class ApplicationController < ActionController::Base
   
 =======
 >>>>>>> refactoring and commenting marker files and gmaps.js
+=======
+>>>>>>> d3bd863c3298a6bd38f676f5f0c42201b04fad31
 end
