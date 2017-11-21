@@ -1,6 +1,5 @@
 class Marker < ActiveRecord::Base
-  belongs_to :user
-  
+
   # Finds all markers witin the given bounds
   def self.find_all_within_bounds(top, bottom, left, right)
     markersTop = Marker.where("lat < (?)", top)

@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'breathe#index'
-  resources :cities, :users
-  resources :sessions, only: [:create, :destroy]
-  resources :markers, only: [:create, :show, :destroy]
 
-  # city data routes
+  resources :markers, only: [:create, :show, :destroy]
+  resources :users, only: [:show]
+
+  # city routes
+  resources :cities
   post '/city_data' => 'cities#city_data'
   get '/cached_city_data' => 'cities#cached_city_data'
   get '/city_data_back' => 'cities#city_data_back'
@@ -18,7 +19,8 @@ Rails.application.routes.draw do
   get '/favorite_city' => 'cities#favorite_city'
   get '/display_favorite_cities' => 'cities#display_favorite_cities'
   
-  # auth routes
+  # sessions routes
+  resources :sessions, only: [:create, :destroy]
   get 'auth/:provider/callback', to: "sessions#create", as: 'auth'
   get 'auth/failure' => "sessions#auth_failure", as: 'auth_failure'
   get 'signout', to: 'sessions#destroy', as: 'signout'

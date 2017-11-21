@@ -4,7 +4,7 @@ class MarkersController < ApplicationController
   # Create a new marker
   def create
     # If the user has been assigned to a user object
-    if session[:user_id] != nil
+    if session[:current_or_guest_user] != nil
       marker = Marker.create!(marker_params.merge(:user_id => session[:user_id]))
       render :json => marker
     # If the user has not been assigned to a user object

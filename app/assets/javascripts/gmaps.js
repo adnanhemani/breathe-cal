@@ -121,7 +121,7 @@ function initAutocomplete() {
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
       };
-      
+      // POST the city data
       $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
@@ -193,7 +193,6 @@ function initAutocomplete() {
   // Create string to display in infowindow
   function createContentString(data){
     var title = data.title;
-    console.log(title)
     var attributes = ["cat", "bees", "perfume", "oak", "peanut", "gluten", "dog", "dust", "smoke", "mold"];
     var leftContentString = "";
     var rightContentString = "";
@@ -223,6 +222,7 @@ function initAutocomplete() {
   // Called when a user clicks to place a marker
   function placeMarker(location) {
     labelNum += 1;
+    // Create new mmaps marker object
     var marker = new google.maps.Marker({
       label: labelNum.toString() ,
       position: location,
@@ -290,7 +290,6 @@ function initAutocomplete() {
         type: "POST",
         contentType: "application/json; charset=utf-8",
         url: "/markers",
-
         data: JSON.stringify({marker: convData}),
         success: function(d){
           fetchedMarkers[d.id] = true;
@@ -325,7 +324,6 @@ function initAutocomplete() {
     markers = [];
   }
 }
-
 
 $(document).ready(initAutocomplete);
 $(document).on('page:load', initAutocomplete);
