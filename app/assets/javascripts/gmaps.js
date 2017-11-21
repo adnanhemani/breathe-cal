@@ -122,8 +122,6 @@ function initAutocomplete() {
         scaledSize: new google.maps.Size(25, 25)
       };
       
-      // TODO mapsearch_data = {geo: place.geometry.location, name:place.name}
-
       $.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",

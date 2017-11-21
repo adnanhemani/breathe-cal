@@ -23,6 +23,11 @@ class MarkersController < ApplicationController
     render :json => markers
   end
   
+  # Remove a marker
+  def destroy
+    
+  end
+  
   private 
   
   def marker_params

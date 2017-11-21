@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   root 'breathe#index'
-  resources :cities, :users, :markers
+  resources :cities, :users
   resources :sessions, only: [:create, :destroy]
+  resources :markers, only: [:create, :show, :destroy]
 
   # city data routes
   post '/city_data' => 'cities#city_data'
