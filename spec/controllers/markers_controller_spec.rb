@@ -19,8 +19,8 @@ RSpec.describe MarkersController, type: :controller do
 
   describe "DELETE #destroy" do
     it "deletes the marker" do
-      delete :destroy, {:id => @marker}
-      expect(Marker.where(id: @marker)).not_to exist
+      @fake_marker = FactoryBot.create(:marker)
+      expect{@fake_marker.destroy}.to change{ Marker.count }.by(-1)
       expect(response).to have_http_status(200)
     end
   end

@@ -18,7 +18,8 @@ class MarkersController < ApplicationController
   
   # Remove a marker
   def destroy
-    
+    @patient = Marker.find(params[:id])
+    @patient.destroy
   end
   
   private
