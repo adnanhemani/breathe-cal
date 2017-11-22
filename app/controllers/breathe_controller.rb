@@ -4,7 +4,7 @@ class BreatheController < ApplicationController
     begin
       url = "http://www.baaqmd.gov/Feeds/AlertRSS.aspx"
       feed = Feedjira::Feed.fetch_and_parse url
-      entry = feed.entries[0]
+      entry = feed.entries.first
       @welcome_message = feed.title 
       @alert = entry.summary
     rescue
