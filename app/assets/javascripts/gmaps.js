@@ -76,11 +76,11 @@ function initAutocomplete() {
   );
   
   $('#marker-cta').css('cursor','pointer');
-  
   $('#left-col').css('height', (window.innerHeight).toString());
   $('#right-col').css('height', (window.innerHeight).toString());
   $('#detail-box').css('height', (window.innerHeight - 50 - 50 - 50 - 50).toString());
   $('#detail-box-mask').css('height', (window.innerHeight - 50 - 50 - 50 - 50).toString());
+  
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
