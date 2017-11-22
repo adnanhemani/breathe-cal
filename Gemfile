@@ -29,7 +29,7 @@ gem 'feedjira'
 
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'phantomjs', '1.9.8'
+gem 'phantomjs'
 gem 'poltergeist'
 gem 'selenium-webdriver', '>=3.0'
 
