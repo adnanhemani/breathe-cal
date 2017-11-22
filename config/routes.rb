@@ -6,8 +6,11 @@ Rails.application.routes.draw do
 
   root 'breathe#index'
 
-  resource :markers, only: [:create, :show, :destroy]
   resources :users, only: [:show]
+  
+  # markers routes
+  resources :markers, only: [:create, :destroy]
+  resource :marker, only: [:show]
 
   # city routes
   resources :cities

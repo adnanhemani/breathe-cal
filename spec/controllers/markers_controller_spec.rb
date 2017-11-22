@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe MarkersController, type: :controller do
 
   describe "POST #create" do
@@ -19,9 +18,10 @@ RSpec.describe MarkersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    #method i found on the internet, haven't tested
     it "deletes the marker" do
-      #expect{delete :destroy, :id => @marker}.to change(Marker, :count).by(-1)
+      delete :destroy, {:id => @marker}
+      expect(Marker.where(id: @marker)).not_to exist
+      expect(response).to have_http_status(200)
     end
   end
 end

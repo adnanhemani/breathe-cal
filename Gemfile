@@ -61,17 +61,15 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
   gem 'database_cleaner' # required by Cucumber
-  gem 'factory_girl_rails' # if using FactoryGirl
+  gem 'factory_bot_rails' # if using FactoryBot
   gem 'metric_fu'        # collect code metrics
   gem "codeclimate-test-reporter", require: nil
-
 end
 
 group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
-
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
