@@ -1,6 +1,4 @@
 class MarkersController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
   # Create a new marker
   def create
     marker = Marker.create!(marker_params.merge(:user_id => current_or_guest_user.id))
