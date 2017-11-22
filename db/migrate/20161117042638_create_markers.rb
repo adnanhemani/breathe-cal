@@ -4,6 +4,7 @@ class CreateMarkers < ActiveRecord::Migration
       t.string :lng
       t.string :lat
       t.string :title
+      t.integer :user_id
       t.boolean :dog
       t.boolean :cat
       t.boolean :mold
@@ -14,7 +15,6 @@ class CreateMarkers < ActiveRecord::Migration
       t.boolean :smoke
       t.boolean :gluten
       t.boolean :peanut
-      t.integer :user_id
       t.timestamps null: false
     end
   end
