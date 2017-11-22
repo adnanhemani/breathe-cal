@@ -14,7 +14,7 @@ class CreateMarkers < ActiveRecord::Migration
       t.boolean :smoke
       t.boolean :gluten
       t.boolean :peanut
-      t.user_id
+      t.integer :user_id
       t.timestamps null: false
     end
   end
