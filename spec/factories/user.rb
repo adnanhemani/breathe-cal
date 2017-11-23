@@ -1,4 +1,4 @@
-FactoryBot.define do
+FactoryGirl.define do
   factory :user do
     name 'John Smith' # default values
     provider 'google_oauth2'

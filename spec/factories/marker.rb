@@ -1,4 +1,4 @@
-FactoryBot.define do
+FactoryGirl.define do
   factory :marker do
     id 1
     cat true
