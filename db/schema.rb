@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 20171026170753) do
     t.string   "location_key"
     t.string   "zip"
     t.text     "daily_data"
-    t.string   "lat"
-    t.string   "lng"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "lat"
+    t.string   "lng"
     t.integer  "user_id"
   end
 
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20171026170753) do
     t.string   "lng"
     t.string   "lat"
     t.string   "title"
-    t.integer  "user_id"
     t.boolean  "dog"
     t.boolean  "cat"
     t.boolean  "mold"
@@ -44,9 +43,12 @@ ActiveRecord::Schema.define(version: 20171026170753) do
     t.boolean  "smoke"
     t.boolean  "gluten"
     t.boolean  "peanut"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "markers", ["user_id"], name: "index_markers_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.float    "latitude"
