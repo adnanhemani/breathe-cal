@@ -81,7 +81,7 @@ Think about replacing your grass lawn with low pollen ground cover - Irish Moss,
   
   def greeting1(data)
     if data.nil?
-      "Hello guest!"
+      "Hello " + current_or_guest_user.name
     else
       "In " + data[0]
     end
