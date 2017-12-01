@@ -2,8 +2,13 @@
   <div data-toggle="modal" data-target="#myModal"><%= image_tag('bcal', :style => "width: 100px; float: left; margin-left: 5px; margin-top: 5px;") %></div>
     
     <ul class="navbar navbar-nav navbar-right" style="position: absolute; right: 30px; padding: 2px;">
+      <% if flash[:auth_failure] %>
+        <p style="color: red; padding: 0;margin: 0;margin-top: -9px;"><%= flash[:auth_failure] %> </p>
+      <% elsif flash[:profile] %>
+        <p style="color: red; padding: 0;margin: 0;margin-top: -9px;"><%= flash[:profile] %> </p>
+      <% end %>
       <% if current_user %>
-        <strong><%=current_user.name %></strong>!
+        <strong><%= link_to current_user.name, user_path(current_user) %></strong>
         <%= link_to 'Sign Out', signout_path, id: "sign_out", class:"signout_link" %>
       <% else %>
         <%= link_to "Sign in with Google+", "/auth/google_oauth2", id: "sign_in" %>
