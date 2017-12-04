@@ -111,12 +111,13 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
   attach_file(field, File.expand_path(path))
 end
 
-Then /^(?:|I )should see "([^"]*)"$/ do |text|
-  # wait_for_ajax
+Then /^(?:|I )should see "(.*)"$/ do |text|
   if page.respond_to? :should
-    page.should have_content(text)
+    page.should have_xpath('//*', :text => text)
+    # page.html.should have_content(text)
   else
-    assert page.has_content?(text)
+    assert page.has_xpath?('//*', :text => regexp)
+    # assert page.html.has_content?(text)
   end
 end
 
@@ -282,12 +283,3 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
-  # def wait_for_ajax
-  #   Timeout.timeout(Capybara.default_max_wait_time) do
-  #     loop until finished_all_ajax_requests?
-  #   end
-  # end
-
-  # def finished_all_ajax_requests?
-  #   page.evaluate_script('jQuery.active').zero?
-  # end
