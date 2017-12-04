@@ -8,13 +8,17 @@ class CitiesController < ApplicationController
     def new
     end
     
+    def map_search
+    end
+    
     # Start storing city data and send city data to be rendered. 
     def cached_city_data
-      city = City.find(params[:id])
+      city = City.find_by(name: params[:name])
       # Calls AccuWeather API
       city.update_city_data
       @geo = [city.lat, city.lng]
       @data = [city.name, city.daily_data]
+      @cached = true
       respond_to do |format|
         format.js {
           render :template => "cities/city_data.js.erb"
@@ -32,46 +36,49 @@ class CitiesController < ApplicationController
       return false
     end
     
-    # Helper method to reduce code complexity
-    def update_recent_cities(user, rec_cities)
-      rec_cities = rec_cities.pop(5)
-      user.recent_cities = rec_cities
-      user.save(:validate => false)
-      user.recent_cities.reverse
-    end
-    
+    # Making a cookie to store all data of cities being searched.
     def city_data
-      @geo = [params[:geo]["lat"], params[:geo]["lng"]]
-      city = City.obtain_stored_city(@geo[0], @geo[1], params[:name])
+      if params[:geo]
+        latlng = params[:geo]
+        loc_key = City.get_loc_key(latlng["lat"], latlng["lng"], params[:name])
+        city = City.find_by(location_key: loc_key)
+      end
+      city.update_city_data
+
       @data = [city.name, city.daily_data]
-      @user = current_or_guest_user
-      @recent_cities = @user.recent_cities
-      
-      unless a_in_b_as_c?(city.name, @recent_cities, "name")
+      unless a_in_b_as_c?(city.name, session[:cities], "name")
         if (@quality.nil?)
           @quality = city.daily_data["DailyForecasts"][0]["AirAndPollen"][0]["Category"]
         end
-        @recent_cities << { "name" => city.name, "quality" => @quality, "id" => city.id }
-      end
-      
-      
-      @cities = update_recent_cities(@user, @recent_cities)
 
+        session[:cities] << { "name" => city.name, "quality" => @quality }
+      end
+    
       respond_to do |format|
         format.js {
           render :template => "cities/city_data.js.erb"
         }
       end
+      # render :json => city.daily_data.to_json
     end
-
     
     # Cookie for recently searched cities. Shows at most 5 city.
     def city_data_back
       @text = "Recent Searches"
-      @user = current_or_guest_user
-      @cities = @user.recent_cities.reverse!
-      @cities ||= []
-      
+      if session[:cities]
+        # Trim the list of cities. Max length of the list is 5.
+        if session[:cities].length > 5
+          session[:cities] = session[:cities][session[:cities].length - 5, session[:cities].length - 1]
+        end 
+        # Used for debugging, prints all 5 city names to server.
+        #session[:cities].each do |city|
+          #puts city
+        #end 
+        @cities = session[:cities].reverse
+      else
+        @cities = []
+        session[:cities] = []
+      end
       respond_to do |format|
         format.js {
           render :template => "cities/city_data_back.js.erb"
@@ -82,9 +89,9 @@ class CitiesController < ApplicationController
     # Display favorite cities.
     def display_favorite_cities
       @text = "Favorite Cities"
-      if session[:user_id]
+      if session[:client_id]
         @cities = session[:favorites]
-        if @cities == nil || @cities.empty? 
+      if @cities == nil || @cities.empty? 
           @no_cities = "You currently have no favorite cities!"
         end
       else 
